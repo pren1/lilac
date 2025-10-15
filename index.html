@@ -88,37 +88,51 @@
   </p>
 
   <!-- ===== Method Overview ===== -->
-  <h2>Method Overview</h2>
-  <p>The proposed framework makes three main contributions:</p>
-
-  <ol>
+  <h2 style="font-size: 26px; margin-top: 60px;">Method Overview</h2>
+  
+  <p style="font-size: 16px; line-height: 1.6;">
+    LILAC performs <b>long-sequence streaming motion stylization</b> in the latent space using a
+    causal sliding-window design. The framework refines motion latents via diffusion-based denoising
+    and reconstructs temporally consistent sequences through a causal decoder.
+    Its key contributions are summarized below:
+  </p>
+  
+  <ol style="font-size: 16px; line-height: 1.6; margin-left: 25px;">
     <li>
       <b>Latent-space streaming architecture.</b>
-      A causal sliding-window design enables real-time motion stylization without access to future frames or modifications to the diffusion model.
+      A causal sliding-window design enables real-time motion stylization without access to future frames
+      or modifications to the diffusion model.
     </li>
     <li>
       <b>Style-conditioned generation.</b>
-      Incorporates MotionCLIP style embeddings&nbsp;<a href="https://arxiv.org/abs/2203.13406" target="_blank">[Tevet&nbsp;et&nbsp;al.,&nbsp;2022]</a>,
+      Incorporates MotionCLIP style embeddings
+      <a href="https://arxiv.org/abs/2203.13406" target="_blank">[Tevet&nbsp;et&nbsp;al.,&nbsp;2022]</a>,
       allowing smooth and instantaneous transitions between motion styles during streaming.
     </li>
     <li>
       <b>Experimental validation.</b>
-      Benchmarks demonstrate the practicality and effectiveness of the proposed streaming framework compared with offline methods.
+      Benchmarks demonstrate the practicality and effectiveness of the proposed streaming framework
+      compared with offline methods.
     </li>
   </ol>
-
-  <div class="center">
+  
+  <p style="font-size: 16px; line-height: 1.6; margin-top: 25px;">
+    The overall architecture is illustrated below.
+  </p>
+  
+  <div class="center" style="text-align:center; margin-top: 10px; margin-bottom: 25px;">
     <img src="assets/Diffusion.drawio.png"
-         style="max-width: 500px; width: 90%; height: auto; border-radius: 6px;"
+         style="max-width: 420px; width: 80%; height: auto; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.08);"
          alt="Method diagram">
-    <p class="caption" style="max-width: 600px; margin: 10px auto; font-size: 14px; color: #555;">
-      <b>Figure:</b> Proposed streaming stylization pipeline.
+    <p class="caption" style="max-width: 600px; margin: 10px auto; font-size: 15px; color: #444;">
+      <b>Figure:</b> Streaming stylization pipeline.
       Motion segments are processed by an encoder–decoder with a style-conditioned denoiser.
       The latent output of the diffusion model is decoded into motion features,
       concatenated with previous outputs, aligned through trajectory copy, re-encoded,
       and passed into a causal decoder for temporally consistent motion generation.
     </p>
   </div>
+
   <!-- ===== Results ===== -->
   <h2>Results</h2>
   <p>
