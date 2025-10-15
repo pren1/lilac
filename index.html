@@ -117,10 +117,11 @@
   <!-- ===== Abstract ===== -->
   <h2>Abstract</h2>
   <p>
-    Generating long and stylized human motions in real time is critical for applications that demand continuous and responsive character control.
-    While existing VAE–Diffusion–based motion stylization frameworks achieve high-quality results in the latent space, they are generally confined to offline processing. <b>LILAC</b> builds upon one such offline framework (<a href="https://openaccess.thecvf.com/content/CVPR2024/html/Song_Arbitrary_Motion_Style_Transfer_with_Multi-condition_Motion_Latent_Diffusion_Model_CVPR_2024_paper.html" target="_blank">
-    Song&nbsp;et&nbsp;al.,&nbsp;CVPR&nbsp;2024</a>) and extends it to <b> real-time streaming generation of long motion sequences </b> through a causal, low-latency design. The model refines latent motion vectors via diffusion-based denoising and reconstructs temporally consistent sequences using a transformer-based causal decoder.
-    This design enables smooth and immediate style transitions while maintaining stylization quality comparable to offline methods, achieving a favorable balance between responsiveness and visual coherence on benchmark datasets.
+    Generating long and stylized human motions in real time is critical for applications that demand continuous and responsive character control. Despite its importance, existing streaming approaches operate directly in the raw motion space, incurring substantial computational overhead and making it difficult to maintain temporal stability. 
+    Meanwhile, existing VAE–Diffusion–based motion stylization frameworks achieve high-quality results in the latent
+    space but are generally confined to offline processing. 
+    LILAC (Long-sequence Incremental Low-Latency And Causal stylization) builds upon one such offline framework  (<a href="https://openaccess.thecvf.com/content/CVPR2024/html/Song_Arbitrary_Motion_Style_Transfer_with_Multi-condition_Motion_Latent_Diffusion_Model_CVPR_2024_paper.html" target="_blank">
+    Song&nbsp;et&nbsp;al.,&nbsp;CVPR&nbsp;2024</a>) and extends it to <b> real-time, long-sequence generation through a latent-space streaming architecture </b> featuring a sliding-window causal design that enables real-time generation without relying on future frames or modifications to the diffusion model. This design enables real-time generation with smooth and immediate style transitions, achieving a favorable balance between stylization quality and responsiveness as demonstrated by experiments on benchmark datasets.
   </p>
 
   <!-- ===== Method Overview ===== -->
