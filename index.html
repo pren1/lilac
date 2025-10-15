@@ -153,10 +153,11 @@
          style="max-width:460px; width:85%; height:auto;"
          alt="Method diagram">
     <p class="caption">
-      <b>Figure:</b> Streaming stylization pipeline.
-      Motion segments are encoded, denoised in the latent space,
-      concatenated with previous outputs, aligned through trajectory copy, re-encoded,
-      and passed into a causal decoder for temporally consistent motion generation.
+      <b>Figure:</b> Proposed streaming stylization pipeline. 
+    Motion segments are processed by an encoder–decoder with a style-conditioned denoiser. 
+    The latent output of the diffusion model is decoded into motion features, 
+    which are then concatenated with previous outputs, corrected through trajectory copy,
+    re-encoded, and finally passed into a causal decoder for temporally consistent motion generation.
     </p>
   </div>
 
