@@ -58,14 +58,17 @@
   <p style="text-align:center; margin-top:10px;">
     📄 <a href="https://arxiv.org/abs/xxxx.xxxxx" target="_blank">View on arXiv</a>
   </p>
-  
-  <!-- ===== Embedded Demo Video ===== -->
-  <div class="center">
-    <iframe src="https://drive.google.com/file/d/16_OsIK2DPEWhT2IhKNPGNhUEyhcqftZv/preview"
-            width="720" height="405" allow="autoplay"></iframe>
-    <p class="caption">(Watch: Real-time stylized motion generation demo)</p>
-  </div>
 
+  <!-- ===== Embedded Demo Video (responsive, keeps correct aspect ratio) ===== -->
+  <div class="center" style="position: relative; width: 100%; max-width: 900px; padding-top: 56.25%; margin: 0 auto;">
+    <iframe 
+      src="https://drive.google.com/file/d/16_OsIK2DPEWhT2IhKNPGNhUEyhcqftZv/preview"
+      style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none;"
+      allow="autoplay">
+    </iframe>
+  </div>
+  <p class="caption">(Watch: Real-time stylized motion generation demo)</p>
+  
   <!-- ===== Teaser GIF ===== -->
   <div class="center" style="margin-top:30px;">
     <img src="assets/walk_circle_hands_high_537_scale_2-516-ezgif.com-optimize.gif" 
