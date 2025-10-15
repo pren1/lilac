@@ -117,17 +117,69 @@
       and passed into a causal decoder for temporally consistent motion generation.
     </p>
   </div>
-
   <!-- ===== Results ===== -->
   <h2>Results</h2>
   <p>
-    Representative long-sequence stylization results demonstrating temporal coherence, smooth style transitions, and responsiveness during streaming.
+    We present both quantitative and qualitative results demonstrating that the proposed streaming framework maintains high stylization quality and temporal consistency while achieving real-time performance.
   </p>
-
+  
+  <!-- ===== Quantitative Table ===== -->
+  <h3>Quantitative Comparison</h3>
+  <div style="overflow-x:auto;">
+    <table style="width:100%; border-collapse:collapse; text-align:center; font-size:15px;">
+      <thead>
+        <tr style="border-bottom:2px solid #666;">
+          <th style="text-align:left;">Methods</th>
+          <th>FMD ↓</th>
+          <th>CRA ↑</th>
+          <th>SRA ↑</th>
+          <th>Total&nbsp;Jitter ↓</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr style="border-bottom:1px solid #ddd;">
+          <td style="text-align:left;">Real Motions</td>
+          <td>--</td><td>0.99</td><td>1.00</td><td>--</td>
+        </tr>
+        <tr style="border-bottom:1px solid #ddd;">
+          <td style="text-align:left;">1DConv + AdaIN</td>
+          <td>42.68</td><td>0.31</td><td>0.57</td><td>--</td>
+        </tr>
+        <tr style="border-bottom:1px solid #ddd;">
+          <td style="text-align:left;">STGCN + AdaIN</td>
+          <td>129.44</td><td><b>0.60</b></td><td>0.18</td><td>--</td>
+        </tr>
+        <tr style="border-bottom:1px solid #ddd;">
+          <td style="text-align:left;">Motion Puzzle</td>
+          <td>113.31</td><td>0.26</td><td>0.46</td><td>--</td>
+        </tr>
+        <tr style="border-bottom:2px solid #666;">
+          <td style="text-align:left;">Offline (Original Paper)</td>
+          <td><b>27.69</b></td><td>0.36</td><td>0.58</td><td><b>0.0089</b></td>
+        </tr>
+        <tr>
+          <td style="text-align:left;"><b>Online (Proposed, 10 steps)</b></td>
+          <td>31.69</td><td>0.30</td><td><b>0.58</b></td><td>0.0139</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  
+  <p style="font-size:14px; color:#666; text-align:center; margin-top:8px;">
+    <b>Table:</b> Quantitative comparison between offline and proposed streaming settings.
+    LILAC achieves a favorable balance between stylization quality and real-time performance.
+  </p>
+  
+  <!-- ===== Qualitative GIFs ===== -->
+  <h3>Qualitative Results</h3>
+  <p>
+    Representative long-sequence stylization results demonstrate temporal coherence, smooth transitions, and responsiveness under different motion styles and trajectories.
+  </p>
+  
   <div class="center">
-    <img src="assets/result_1.gif" width="720" style="margin-top:20px;">
-    <img src="assets/result_2.gif" width="720" style="margin-top:20px;">
-    <img src="assets/result_3.gif" width="720" style="margin-top:20px;">
+    <img src="assets/result_1.gif" width="900" style="margin-top:20px;">
+    <img src="assets/result_2.gif" width="900" style="margin-top:20px;">
+    <img src="assets/result_3.gif" width="900" style="margin-top:20px;">
     <p class="caption">
       Each sequence shows real-time generated motions under different style embeddings or trajectories.
     </p>
