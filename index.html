@@ -1,27 +1,137 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <title>LILAC: Long-sequence Incremental Low-Latency And Causal Stylization</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 40px auto;
+      max-width: 900px;
+      line-height: 1.6;
+    }
+    h1 {
+      font-size: 28px;
+      margin-bottom: 10px;
+    }
+    h2 {
+      border-bottom: 2px solid #ddd;
+      padding-bottom: 4px;
+      margin-top: 40px;
+    }
+    .slogan {
+      font-size: 18px;
+      font-style: italic;
+      color: #444;
+      margin-bottom: 20px;
+    }
+    .links a {
+      text-decoration: none;
+      margin-right: 15px;
+      font-weight: bold;
+    }
+    .center {
+      text-align: center;
+    }
+    video, img {
+      display: block;
+      margin: 0 auto;
+      border-radius: 8px;
+    }
+    ol {
+      margin-left: 20px;
+    }
+  </style>
 </head>
-<body style="font-family: sans-serif; margin: 40px;">
-  <h1>LILAC: Long-sequence Incremental Low-Latency And Causal Stylization</h1>
-  <p><strong>Author:</strong> Peng Ren</p>
 
-  <p>
-    <a href="https://arxiv.org/abs/xxxx.xxxxx">[📄 View Paper on arXiv]</a> |
-    <a href="assets/demo.mp4">[🎥 Watch Demo Video]</a>
+<body>
+
+  <!-- ===== Title & Intro ===== -->
+  <h1>LILAC: Long-sequence Incremental Low-Latency And Causal Stylization</h1>
+  <p class="slogan">
+    Real-time streaming motion stylization with low latency and long-sequence temporal consistency.
   </p>
 
+  <p><strong>Author:</strong> Peng Ren</p>
+
+  <p class="links">
+    <a href="https://arxiv.org/abs/xxxx.xxxxx">📄 Paper (arXiv)</a>
+    <a href="assets/demo.mp4">🎥 Demo Video</a>
+    <a href="assets/teaser.gif">🖼️ Teaser GIF</a>
+  </p>
+
+  <!-- ===== Demo Video ===== -->
+  <div class="center">
+    <video controls width="720" poster="assets/teaser.gif">
+      <source src="assets/demo.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+    <p style="font-size:14px; color:#666;">(Watch the real-time stylized motion generation demo)</p>
+  </div>
+
+  <!-- ===== Abstract ===== -->
   <h2>Abstract</h2>
-  <p>This project explores real-time streaming motion stylization in the latent space using diffusion-based refinement and causal decoding for long-sequence generation.</p>
+  <p>
+    Generating long and stylized human motions in real time is critical for applications that demand continuous and responsive character control.
+    While existing VAE–Diffusion models achieve high-quality stylization in the latent space, they are confined to offline processing.
+    In contrast, most prior streaming approaches operate directly in the raw motion space, which incurs substantial computational overhead and makes it difficult to maintain temporal stability.
+    We propose <b>LILAC</b> (Long-sequence Incremental Low-Latency And Causal stylization), a framework for long-sequence streaming motion stylization in the latent space.
+    LILAC refines latent motion vectors through a diffusion model with low-latency updates and employs a transformer-based causal decoder to assemble them into temporally consistent sequences.
+    This design enables real-time generation with smooth and immediate style transitions, achieving a favorable balance between stylization quality and responsiveness as demonstrated by experiments on benchmark datasets.
+  </p>
 
-  <h2>Demo</h2>
-  <video controls width="640">
-    <source src="assets/demo.mp4" type="video/mp4">
-  </video>
+  <!-- ===== Method Overview ===== -->
+  <h2>Method Overview</h2>
 
+  <p>The proposed framework makes three main contributions:</p>
+
+  <ol>
+    <li>
+      <b>Latent-space streaming architecture.</b>
+      A causal sliding-window design enables real-time motion stylization without access to future frames or modifications to the diffusion model.
+    </li>
+    <li>
+      <b>Style-conditioned generation.</b>
+      Incorporates MotionCLIP style embeddings&nbsp;<a href="https://arxiv.org/abs/2203.13406" target="_blank">[Tevet&nbsp;et&nbsp;al.,&nbsp;2022]</a>,
+      allowing smooth and instantaneous transitions between motion styles during streaming.
+    </li>
+    <li>
+      <b>Experimental validation.</b>
+      Benchmarks demonstrate the practicality and effectiveness of the proposed streaming framework compared with offline methods.
+    </li>
+  </ol>
+
+  <div class="center">
+    <img src="assets/Diffusion.drawio.png" width="640">
+    <p style="font-size:14px; color:#666;">
+      <b>Figure:</b> Proposed streaming stylization pipeline.
+      Motion segments are processed by an encoder–decoder with a style-conditioned denoiser.
+      The latent output of the diffusion model is decoded into motion features,
+      concatenated with previous outputs, aligned through trajectory copy, re-encoded,
+      and passed into a causal decoder for temporally consistent motion generation.
+    </p>
+  </div>
+
+  <!-- ===== Results ===== -->
+  <h2>Results</h2>
+  <p>We present representative long-sequence stylization results demonstrating temporal coherence, smooth style transitions, and responsiveness during streaming.</p>
+
+  <div class="center">
+    <img src="assets/result_1.gif" width="720" style="margin-top:20px;">
+    <img src="assets/result_2.gif" width="720" style="margin-top:20px;">
+    <img src="assets/result_3.gif" width="720" style="margin-top:20px;">
+    <p style="font-size:14px; color:#666;">Each sequence shows real-time generated motions under different style embeddings or input trajectories.</p>
+  </div>
+
+  <!-- ===== Teaser (optional repeated for emphasis) ===== -->
   <h2>Teaser</h2>
-  <img src="assets/teaser.gif" width="640">
+  <img src="assets/teaser.gif" width="720" alt="Teaser figure showing stylized long-sequence motion generation">
+
+  <!-- ===== Footer ===== -->
+  <p style="text-align:center; font-size:14px; color:#666; margin-top:40px;">
+    Project page for <b>LILAC</b>. Last updated: October 2025.<br>
+    Template inspired by CVPR project websites.
+  </p>
+
 </body>
 </html>
