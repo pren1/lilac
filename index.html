@@ -13,6 +13,7 @@
     h1 {
       font-size: 28px;
       margin-bottom: 10px;
+      text-align: center;
     }
     h2 {
       border-bottom: 2px solid #ddd;
@@ -23,17 +24,13 @@
       font-size: 18px;
       font-style: italic;
       color: #444;
+      text-align: center;
       margin-bottom: 20px;
-    }
-    .links a {
-      text-decoration: none;
-      margin-right: 15px;
-      font-weight: bold;
     }
     .center {
       text-align: center;
     }
-    video, img {
+    video, img, iframe {
       display: block;
       margin: 0 auto;
       border-radius: 8px;
@@ -41,32 +38,39 @@
     ol {
       margin-left: 20px;
     }
+    .caption {
+      font-size: 14px;
+      color: #666;
+      text-align: center;
+      margin-top: 8px;
+    }
   </style>
 </head>
 
 <body>
 
-  <!-- ===== Title & Intro ===== -->
+  <!-- ===== Title & Slogan ===== -->
   <h1>LILAC: Long-sequence Incremental Low-Latency And Causal Stylization</h1>
   <p class="slogan">
     Real-time streaming motion stylization with low latency and long-sequence temporal consistency.
   </p>
-
-  <p><strong>Author:</strong> Peng Ren</p>
-
-  <p class="links">
-    <a href="https://arxiv.org/abs/xxxx.xxxxx">📄 Paper (arXiv)</a>
-    <a href="assets/demo.mp4">🎥 Demo Video</a>
-    <a href="assets/teaser.gif">🖼️ Teaser GIF</a>
+  
+  <p style="text-align:center; margin-top:10px;">
+    📄 <a href="https://arxiv.org/abs/xxxx.xxxxx" target="_blank">View on arXiv</a>
   </p>
-
-  <!-- ===== Demo Video ===== -->
+  
+  <!-- ===== Embedded Demo Video ===== -->
   <div class="center">
-    <video controls width="720" poster="assets/teaser.gif">
-      <source src="assets/demo.mp4" type="video/mp4">
-      Your browser does not support the video tag.
-    </video>
-    <p style="font-size:14px; color:#666;">(Watch the real-time stylized motion generation demo)</p>
+    <iframe src="https://drive.google.com/file/d/16_OsIK2DPEWhT2IhKNPGNhUEyhcqftZv/preview"
+            width="720" height="405" allow="autoplay"></iframe>
+    <p class="caption">(Watch: Real-time stylized motion generation demo)</p>
+  </div>
+
+  <!-- ===== Teaser GIF ===== -->
+  <div class="center" style="margin-top:30px;">
+    <img src="assets/walk_circle_hands_high_537_scale_2-516-ezgif.com-optimize.gif" 
+         width="900" alt="Teaser figure showing long-sequence stylized motion generation">
+    <p class="caption">(Long-sequence streaming motion stylization results)</p>
   </div>
 
   <!-- ===== Abstract ===== -->
@@ -82,7 +86,6 @@
 
   <!-- ===== Method Overview ===== -->
   <h2>Method Overview</h2>
-
   <p>The proposed framework makes three main contributions:</p>
 
   <ol>
@@ -102,8 +105,8 @@
   </ol>
 
   <div class="center">
-    <img src="assets/Diffusion.drawio.png" width="640">
-    <p style="font-size:14px; color:#666;">
+    <img src="assets/Diffusion.drawio.png" width="640" alt="Method diagram">
+    <p class="caption">
       <b>Figure:</b> Proposed streaming stylization pipeline.
       Motion segments are processed by an encoder–decoder with a style-conditioned denoiser.
       The latent output of the diffusion model is decoded into motion features,
@@ -114,23 +117,22 @@
 
   <!-- ===== Results ===== -->
   <h2>Results</h2>
-  <p>We present representative long-sequence stylization results demonstrating temporal coherence, smooth style transitions, and responsiveness during streaming.</p>
+  <p>
+    Representative long-sequence stylization results demonstrating temporal coherence, smooth style transitions, and responsiveness during streaming.
+  </p>
 
   <div class="center">
     <img src="assets/result_1.gif" width="720" style="margin-top:20px;">
     <img src="assets/result_2.gif" width="720" style="margin-top:20px;">
     <img src="assets/result_3.gif" width="720" style="margin-top:20px;">
-    <p style="font-size:14px; color:#666;">Each sequence shows real-time generated motions under different style embeddings or input trajectories.</p>
+    <p class="caption">
+      Each sequence shows real-time generated motions under different style embeddings or trajectories.
+    </p>
   </div>
-
-  <!-- ===== Teaser (optional repeated for emphasis) ===== -->
-  <h2>Teaser</h2>
-  <img src="assets/teaser.gif" width="720" alt="Teaser figure showing stylized long-sequence motion generation">
 
   <!-- ===== Footer ===== -->
   <p style="text-align:center; font-size:14px; color:#666; margin-top:40px;">
     Project page for <b>LILAC</b>. Last updated: October 2025.<br>
-    Template inspired by CVPR project websites.
   </p>
 
 </body>
