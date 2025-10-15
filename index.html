@@ -5,27 +5,42 @@
   <title>LILAC: Long-sequence Incremental Low-Latency And Causal Stylization</title>
   <style>
     body {
-      font-family: Arial, sans-serif;
+      font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
       margin: 40px auto;
-      max-width: 900px;
-      line-height: 1.6;
+      max-width: 880px;
+      line-height: 1.7;
+      color: #222;
+      background: #fff;
     }
     h1 {
-      font-size: 28px;
-      margin-bottom: 10px;
+      font-size: 30px;
       text-align: center;
+      margin-bottom: 6px;
     }
     h2 {
-      border-bottom: 2px solid #ddd;
+      font-size: 22px;
+      border-bottom: 2px solid #eee;
       padding-bottom: 4px;
-      margin-top: 40px;
+      margin-top: 50px;
+    }
+    h3 {
+      font-size: 18px;
+      margin-top: 35px;
+      color: #333;
+    }
+    a {
+      color: #0072c6;
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
     }
     .slogan {
       font-size: 18px;
-      font-style: italic;
-      color: #444;
+      color: #555;
       text-align: center;
-      margin-bottom: 20px;
+      margin-bottom: 15px;
+      font-style: italic;
     }
     .center {
       text-align: center;
@@ -33,16 +48,36 @@
     video, img, iframe {
       display: block;
       margin: 0 auto;
-      border-radius: 8px;
+      border-radius: 6px;
     }
     ol {
-      margin-left: 20px;
+      margin-left: 22px;
     }
     .caption {
       font-size: 14px;
       color: #666;
       text-align: center;
-      margin-top: 8px;
+      margin-top: 6px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 10px;
+    }
+    th, td {
+      padding: 8px;
+    }
+    th {
+      border-bottom: 2px solid #666;
+    }
+    td {
+      border-bottom: 1px solid #ddd;
+    }
+    footer {
+      text-align: center;
+      font-size: 14px;
+      color: #777;
+      margin-top: 40px;
     }
   </style>
 </head>
@@ -54,12 +89,15 @@
   <p class="slogan">
     Real-time streaming motion stylization with low latency and long-sequence temporal consistency.
   </p>
-  
+
   <p style="text-align:center; margin-top:10px;">
-    📄 <a href="https://arxiv.org/abs/xxxx.xxxxx" target="_blank">View on arXiv</a>
+    <a href="https://arxiv.org/abs/xxxx.xxxxx" target="_blank"
+       style="background:#0072c6;color:#fff;padding:6px 12px;border-radius:4px;">
+       📄 View on arXiv
+    </a>
   </p>
 
-  <!-- ===== Embedded Demo Video (21:9 aspect ratio) ===== -->
+  <!-- ===== Demo Video (21:9) ===== -->
   <div class="center" style="position: relative; width: 100%; max-width: 900px; padding-top: 42.86%; margin: 0 auto;">
     <iframe 
       src="https://drive.google.com/file/d/16_OsIK2DPEWhT2IhKNPGNhUEyhcqftZv/preview"
@@ -68,12 +106,12 @@
     </iframe>
   </div>
   <p class="caption">(Watch: Real-time stylized motion generation demo)</p>
-  
+
   <!-- ===== Teaser GIF ===== -->
   <div class="center" style="margin-top:30px;">
     <img src="assets/walk_circle_hands_high_537_scale_2-516-ezgif.com-optimize.gif" 
          width="900" alt="Teaser figure showing long-sequence stylized motion generation">
-    <p class="caption">(Long-sequence streaming motion stylization results)</p>
+    <p class="caption">(Long-sequence streaming motion stylization results with trajectory alignment)</p>
   </div>
 
   <!-- ===== Abstract ===== -->
@@ -89,15 +127,11 @@
 
   <!-- ===== Method Overview ===== -->
   <h2>Method Overview</h2>
-  
   <p>
-    LILAC performs <b>long-sequence streaming motion stylization</b> in the latent space using a
-    causal sliding-window design. The framework refines motion latents through diffusion-based denoising
-    and reconstructs temporally consistent sequences via a causal decoder.
+    The proposed framework enables real-time motion stylization in the latent space using a causal sliding-window design.
+    Its key components and contributions are summarized below:
   </p>
-  
-  <p>The key contributions are as follows:</p>
-  
+
   <ol>
     <li>
       <b>Latent-space streaming architecture.</b>
@@ -116,16 +150,12 @@
       compared with offline methods.
     </li>
   </ol>
-  
-  <p>
-    The overall pipeline is shown below.
-  </p>
-  
+
   <div class="center" style="text-align:center; margin-top:20px; margin-bottom:20px;">
     <img src="assets/Diffusion.drawio.png"
          style="max-width:460px; width:85%; height:auto;"
          alt="Method diagram">
-    <p class="caption" style="font-size:14px; color:#555; margin-top:8px;">
+    <p class="caption">
       <b>Figure:</b> Streaming stylization pipeline.
       Motion segments are encoded, denoised in the latent space,
       concatenated with previous outputs, aligned through trajectory copy, re-encoded,
@@ -138,13 +168,12 @@
   <p>
     We present both quantitative and qualitative results demonstrating that the proposed streaming framework maintains high stylization quality and temporal consistency while achieving real-time performance.
   </p>
-  
-  <!-- ===== Quantitative Table ===== -->
+
   <h3>Quantitative Comparison</h3>
   <div style="overflow-x:auto;">
-    <table style="width:100%; border-collapse:collapse; text-align:center; font-size:15px;">
+    <table>
       <thead>
-        <tr style="border-bottom:2px solid #666;">
+        <tr>
           <th style="text-align:left;">Methods</th>
           <th>FMD ↓</th>
           <th>CRA ↑</th>
@@ -153,45 +182,25 @@
         </tr>
       </thead>
       <tbody>
-        <tr style="border-bottom:1px solid #ddd;">
-          <td style="text-align:left;">Real Motions</td>
-          <td>--</td><td>0.99</td><td>1.00</td><td>--</td>
-        </tr>
-        <tr style="border-bottom:1px solid #ddd;">
-          <td style="text-align:left;">1DConv + AdaIN</td>
-          <td>42.68</td><td>0.31</td><td>0.57</td><td>--</td>
-        </tr>
-        <tr style="border-bottom:1px solid #ddd;">
-          <td style="text-align:left;">STGCN + AdaIN</td>
-          <td>129.44</td><td><b>0.60</b></td><td>0.18</td><td>--</td>
-        </tr>
-        <tr style="border-bottom:1px solid #ddd;">
-          <td style="text-align:left;">Motion Puzzle</td>
-          <td>113.31</td><td>0.26</td><td>0.46</td><td>--</td>
-        </tr>
-        <tr style="border-bottom:2px solid #666;">
-          <td style="text-align:left;">Offline (Original Paper)</td>
-          <td><b>27.69</b></td><td>0.36</td><td>0.58</td><td><b>0.0089</b></td>
-        </tr>
-        <tr>
-          <td style="text-align:left;"><b>Online (Proposed, 10 steps)</b></td>
-          <td>31.69</td><td>0.30</td><td><b>0.58</b></td><td>0.0139</td>
-        </tr>
+        <tr><td style="text-align:left;">Real Motions</td><td>--</td><td>0.99</td><td>1.00</td><td>--</td></tr>
+        <tr><td style="text-align:left;">1DConv + AdaIN</td><td>42.68</td><td>0.31</td><td>0.57</td><td>--</td></tr>
+        <tr><td style="text-align:left;">STGCN + AdaIN</td><td>129.44</td><td><b>0.60</b></td><td>0.18</td><td>--</td></tr>
+        <tr><td style="text-align:left;">Motion Puzzle</td><td>113.31</td><td>0.26</td><td>0.46</td><td>--</td></tr>
+        <tr><td style="text-align:left;">Offline (Original Paper)</td><td><b>27.69</b></td><td>0.36</td><td>0.58</td><td><b>0.0089</b></td></tr>
+        <tr><td style="text-align:left;"><b>Online (Proposed, 10 steps)</b></td><td>31.69</td><td>0.30</td><td><b>0.58</b></td><td>0.0139</td></tr>
       </tbody>
     </table>
   </div>
-  
-  <p style="font-size:14px; color:#666; text-align:center; margin-top:8px;">
+  <p class="caption">
     <b>Table:</b> Quantitative comparison between offline and proposed streaming settings.
     LILAC achieves a favorable balance between stylization quality and real-time performance.
   </p>
-  
-  <!-- ===== Qualitative GIFs ===== -->
+
   <h3>Qualitative Results</h3>
   <p>
     Representative long-sequence stylization results demonstrate temporal coherence, smooth transitions, and responsiveness under different motion styles and trajectories.
   </p>
-  
+
   <div class="center">
     <img src="assets/result_1.gif" width="900" style="margin-top:20px;">
     <img src="assets/result_2.gif" width="900" style="margin-top:20px;">
@@ -202,9 +211,10 @@
   </div>
 
   <!-- ===== Footer ===== -->
-  <p style="text-align:center; font-size:14px; color:#666; margin-top:40px;">
-    Project page for <b>LILAC</b>. Last updated: October 2025.<br>
-  </p>
+  <footer>
+    <hr style="border:none; border-top:1px solid #eee; margin-bottom:10px;">
+    Project page for <b>LILAC</b>. Last updated: October 2025.
+  </footer>
 
 </body>
 </html>
