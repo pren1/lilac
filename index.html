@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>🪻 LILAC: Long-sequence Incremental Low-Latency And Causal Stylization</title>
+  <title>🪻 LILAC</title>
   <style>
     body {
       font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -85,9 +85,9 @@
 <body>
 
   <!-- ===== Title & Slogan ===== -->
-  <h1>🪻 LILAC: Long-sequence Incremental Low-Latency And Causal Stylization</h1>
+  <h1>🪻 LILAC: Long-sequence Incremental Low-latency Arbitrary Motion Stylization via Streaming VAE–Diffusion with Causal Decoding</h1>
   <p class="slogan">
-    Real-time streaming motion stylization with low latency and long-sequence temporal consistency.
+    Real-time streaming and arbitrary motion stylization with low latency and long-term consistency.
   </p>
 
   <p style="text-align:center; margin-top:10px;">
@@ -119,11 +119,14 @@
   <p>
     Generating long and stylized human motions in real time is critical for applications that demand continuous and responsive character control. 
     Despite its importance, existing streaming approaches often operate directly in the raw motion space, leading to substantial computational 
-    overhead and making it difficult to maintain temporal stability. In contrast, latent-space VAE–Diffusion–based frameworks alleviate these
-    issues and achieve high-quality stylization, but they are generally confined to offline processing. To bridge this gap, LILAC 
-    (Long-sequence Incremental Low-Latency And Causal stylization) builds upon a recent high-performing offline framework (<a href="https://openaccess.thecvf.com/content/CVPR2024/html/Song_Arbitrary_Motion_Style_Transfer_with_Multi-condition_Motion_Latent_Diffusion_Model_CVPR_2024_paper.html" target="_blank">
-    Song&nbsp;et&nbsp;al.,&nbsp;CVPR&nbsp;2024</a>) and extends it to an online setting through a latent-space streaming architecture with a sliding-window causal design. 
-    This architecture enables <b> long-sequence real-time stylization </b> without relying on future frames or modifying the diffusion model architecture, achieving a favorable balance between stylization quality and responsiveness as demonstrated by experiments on benchmark datasets.
+    overhead and making it difficult to maintain temporal stability. In contrast, latent-space VAE–Diffusion–based frameworks alleviate these issues 
+    and achieve high-quality stylization, but they are generally confined to offline processing. To bridge this gap, LILAC (Long-sequence Incremental
+    Low-latency Arbitrary Motion Stylization via Streaming VAE–Diffusion with Causal Decoding) builds upon a recent high-performing offline framework
+    for arbitrary motion stylization (<a href="https://openaccess.thecvf.com/content/CVPR2024/html/Song_Arbitrary_Motion_Style_Transfer_with_Multi-condition_Motion_Latent_Diffusion_Model_CVPR_2024_paper.html" target="_blank">
+    Song&nbsp;et&nbsp;al.,&nbsp;CVPR&nbsp;2024</a>) and extends it to an online setting through a latent-space streaming architecture with a sliding-window causal design 
+    and the injection of decoded motion features to ensure smooth motion transitions. This architecture enables <b> long-sequence real-time arbitrary stylization </b> 
+    without relying on future frames or modifying the diffusion model architecture, achieving a favorable balance between stylization quality and responsiveness 
+    as demonstrated by experiments on benchmark datasets.
   </p>
 
   <!-- ===== Method Overview ===== -->
@@ -135,20 +138,15 @@
   <ol>
     <li>
       <b>Latent-space streaming architecture.</b>
-      A latent-space streaming architecture for long-sequence motion stylization,
-      featuring a sliding-window causal design that enables real-time generation
-      without future frames or modifications to the diffusion model.
+      A latent-space streaming architecture for long-sequence arbitrary motion stylization, featuring a sliding-window causal design and a re-decoding/encoding mechanism that injects previously generated motion features into the latent representation, enabling real-time generation without future frames or modifications to the diffusion model architecture.
     </li>
     <li>
       <b>Style-conditioned generation.</b>
-      Style-conditioned generation using MotionCLIP embeddings,
-      allowing smooth and instantaneous transitions between motion styles during streaming.
+      Enables smooth and instantaneous transitions between arbitrary motion styles in a streaming setting, bringing offline style-conditioning methods into real-time operation.
     </li>
     <li>
       <b>Experimental validation.</b>
-      Experimental validation on benchmark datasets,
-      confirming the practicality of the proposed streaming framework
-      and comparing it with existing offline methods.
+      Qualitative and quantitative evaluation on benchmark datasets, demonstrating the effectiveness of the proposed streaming framework compared to existing offline methods.
     </li>
   </ol>
 
@@ -159,7 +157,7 @@
     <p class="caption">
       <b>Figure:</b> Proposed streaming stylization pipeline. 
     Motion segments are processed by an encoder–decoder with a style-conditioned denoiser. 
-    The latent output of the diffusion model is decoded into motion features, 
+    The latent output of the diffusion model is re-decoded into motion features, 
     which are then concatenated with previous outputs, corrected through trajectory copy,
     re-encoded, and finally passed into a causal decoder for temporally consistent motion generation.
     </p>
